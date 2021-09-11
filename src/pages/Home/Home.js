@@ -148,8 +148,54 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="privacy">
+      <div className="privacy-container">
         <h4>Standard Privacy Note</h4>
+        <div className="descriptions">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis velit ducimus culpa quia eius magnam, suscipit eum officia dolorem consequuntur recusandae eligendi quasi, officiis facilis corporis. Sed ut animi dolore?
+            Perspiciatis fugiat consequuntur quas vel eum ut dicta, aspernatur consectetur iste beatae praesentium adipisci quae, magni ducimus? Necessitatibus quod, quibusdam eligendi incidunt deserunt dicta beatae repudiandae labore
+            repellendus, distinctio asperiores?
+          </p>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit. Inventore, sunt et? Quos, cumque placeat beatae dignissimos possimus expedita nihil eligendi delectus excepturi, aliquid saepe accusantium ad, laborum iusto? Veritatis,
+            praesentium! Voluptate fugit repellat neque laborum ad aliquam sapiente nulla qui molestiae voluptatum modi totam esse ipsum, iusto commodi ducimus nam, sunt illo temporibus error voluptates quaerat natus minus! Quia, vero.
+          </p>
+          <p>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Illo quis vel natus, voluptate blanditiis, dignissimos, rem libero aliquid placeat facere et tempora voluptatem. Ex aliquam sapiente quisquam nesciunt dolores nobis.
+            Accusantium, natus! Nobis temporibus cupiditate fuga, corporis dignissimos quas porro rerum eius at sit ex veniam sed minus laboriosam deleniti, hic, id magni impedit! Maiores molestiae explicabo earum qui ut.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt repellat illo quaerat neque amet optio minima, nemo corporis voluptate tempore reprehenderit facilis numquam inventore molestias odit dolore dolores. Repellat,
+            ratione. Nemo facere voluptatum tenetur quidem perferendis cumque aspernatur fugiat rerum ducimus inventore debitis, et sit vel eum quia alias dolorem at in perspiciatis non magnam. Dicta rem est dolor error!
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime iusto illum nostrum eaque labore inventore, quia velit quo nemo fuga vitae ea consequatur maiores amet debitis ipsum, accusantium, blanditiis pariatur. Vel
+            repellendus asperiores omnis quidem pariatur quo iste id non recusandae temporibus. Sint tempore officiis voluptatem dicta, assumenda esse possimus quas laborum accusamus, veritatis, laudantium molestias est culpa libero harum!
+          </p>
+          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. A voluptates soluta omnis adipisci architecto, laborum aliquam quo voluptatem incidunt est odit, sit nesciunt. Nam molestiae maxime impedit? Molestiae, provident hic?</p>
+        </div>
+        <div className="subcription">
+          <Form.Group className="subs">
+            <Form.Label>SMS & Mobile Call</Form.Label>
+            <Form.Check type="switch" id="custom-switch" />
+          </Form.Group>
+          <Form.Group className="subs">
+            <Form.Label>Emailing</Form.Label>
+            <Form.Check type="switch" id="custom-switch" />
+          </Form.Group>
+          <Form.Group className="subs">
+            <Form.Label>Mailing</Form.Label>
+            <Form.Check type="switch" id="custom-switch" />
+          </Form.Group>
+        </div>
+      </div>
+      <div className="terms">
+        <Form.Group className="title-content" controlId="formBasicCheckbox">
+          <Form.Check type="checkbox" label="I have read and understood the above and conditions and hereby agree that I will be bounded by these conditions and policies once I have submitted this application form" />
+        </Form.Group>
+      </div>
+      <div className="submit-btn">
+        <button>CREATE CUSTOMER</button>
       </div>
     </div>
   )

@@ -421,4 +421,117 @@
 .home-container .privacy-container {
   padding: 3rem;
 }
+
+@media (max-width: 756px) {
+  .home-container .privacy-container {
+    padding: 1rem;
+  }
+}
+
+.home-container .privacy-container .descriptions p {
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.home-container .privacy-container .subcription {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+@media (max-width: 756px) {
+  .home-container .privacy-container .subcription {
+    padding: 1rem;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    width: 50%;
+  }
+}
+
+.home-container .privacy-container .subcription .subs {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+@media (max-width: 756px) {
+  .home-container .privacy-container .subcription .subs {
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+  }
+}
+
+.home-container .privacy-container .subcription .subs label {
+  margin-bottom: 0;
+  margin-right: 0.5rem;
+}
+
+.home-container .terms {
+  padding: 3rem;
+}
+
+@media (max-width: 756px) {
+  .home-container .terms {
+    padding: 1rem;
+  }
+}
+
+.home-container .terms .form-check {
+  margin-right: 1rem;
+}
+
+.home-container .terms .form-check input {
+  border-radius: 0;
+  border-color: #ffcb01;
+}
+
+@media (max-width: 756px) {
+  .home-container .terms .form-check input {
+    border-radius: 5px;
+  }
+}
+
+.home-container .terms .form-check label {
+  font-style: italic;
+}
+
+.home-container .submit-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0 3rem;
+}
+
+@media (max-width: 756px) {
+  .home-container .submit-btn {
+    padding: 0 2rem;
+  }
+}
+
+.home-container .submit-btn button {
+  width: 20%;
+  padding: 0.5rem;
+  outline: none;
+  background-color: #ffcb01;
+  border: 0;
+}
+
+@media (max-width: 756px) {
+  .home-container .submit-btn button {
+    padding: 1rem;
+    width: 100%;
+  }
+}
 /*# sourceMappingURL=Home.css.map */

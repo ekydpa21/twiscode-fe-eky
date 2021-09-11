@@ -249,5 +249,72 @@ $primary: rgb(255, 203, 1);
   }
   .privacy-container {
     padding: 3rem;
+    @media (max-width: 756px) {
+      padding: 1rem;
+    }
+    .descriptions {
+      p {
+        font-style: italic;
+        margin-bottom: 1rem;
+      }
+    }
+    .subcription {
+      display: flex;
+      justify-content: space-between;
+      @media (max-width: 756px) {
+        padding: 1rem;
+        flex-direction: column;
+        width: 50%;
+      }
+      .subs {
+        display: flex;
+        align-items: center;
+        @media (max-width: 756px) {
+          justify-content: space-between;
+        }
+        label {
+          margin-bottom: 0;
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+  .terms {
+    padding: 3rem;
+    @media (max-width: 756px) {
+      padding: 1rem;
+    }
+    .form-check {
+      margin-right: 1rem;
+      input {
+        border-radius: 0;
+        border-color: $primary;
+        @media (max-width: 756px) {
+          border-radius: 5px;
+        }
+      }
+      label {
+        font-style: italic;
+      }
+    }
+  }
+  .submit-btn {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0 3rem;
+    @media (max-width: 756px) {
+      padding: 0 2rem;
+    }
+    button {
+      width: 20%;
+      padding: 0.5rem;
+      outline: none;
+      background-color: $primary;
+      border: 0;
+      @media (max-width: 756px) {
+        padding: 1rem;
+        width: 100%;
+      }
+    }
   }
 }
