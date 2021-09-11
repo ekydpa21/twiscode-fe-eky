@@ -29,6 +29,9 @@ $primary: rgb(255, 203, 1);
     .lang-container {
       display: flex;
       align-items: center;
+      position: absolute;
+      right: 3rem;
+      top: 3.5rem;
       @media (max-width: 756px) {
         align-self: flex-start;
       }
