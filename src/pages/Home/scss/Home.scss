@@ -301,7 +301,8 @@ $primary: rgb(255, 203, 1);
   .submit-btn {
     display: flex;
     justify-content: flex-end;
-    padding: 0 3rem;
+    padding: 0 3rem 3rem 3rem;
+    background-color: white;
     @media (max-width: 756px) {
       padding: 0 2rem;
     }
