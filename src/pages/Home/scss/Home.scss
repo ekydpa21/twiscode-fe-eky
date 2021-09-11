@@ -34,6 +34,9 @@ $primary: rgb(255, 203, 1);
       top: 3.5rem;
       @media (max-width: 756px) {
         align-self: flex-start;
+        position: relative;
+        right: 0;
+        top: 0;
       }
       .dropdown-toggle {
         color: hsl(0, 0%, 0%);
