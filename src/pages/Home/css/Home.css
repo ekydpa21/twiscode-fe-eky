@@ -523,7 +523,7 @@
 
 @media (max-width: 756px) {
   .home-container .submit-btn {
-    padding: 0 2rem;
+    padding: 0 2rem 3rem 2rem;
   }
 }
 
