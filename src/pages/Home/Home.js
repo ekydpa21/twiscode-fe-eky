@@ -9,6 +9,11 @@ export default function Home() {
   const titles = ["Mrs", "Ms", "Mdm", "Mr", "Dr"]
   const [selectedLang, setSelectedLang] = useState("English")
   const [codeNumber, setCodeNumber] = useState()
+  const [userInput, setUserInput] = useState({
+    "sms&call": false,
+    emailing: false,
+    mailing: false,
+  })
 
   const fetchContries = async (url) => {
     const contriesData = await axios.get(url)
@@ -16,11 +21,24 @@ export default function Home() {
     setCodeNumber(contriesData.data[0].numericCode)
   }
 
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    if (name === "sms&call" || name === "emailing" || name === "mailing") {
+      if (userInput["sms&call"] === false || userInput.emailing === false || userInput.mailing === false) {
+        setUserInput({ ...userInput, [name]: true })
+      } else {
+        setUserInput({ ...userInput, [name]: false })
+      }
+    } else {
+      setUserInput({ ...userInput, [name]: value })
+    }
+  }
+
   useEffect(() => {
     fetchContries("https://restcountries.eu/rest/v2/all")
   }, [])
 
-  // console.log(countries)
+  console.log(selectedLang)
 
   return (
     <div className="home-container">
@@ -28,10 +46,16 @@ export default function Home() {
         <img src={logo} alt="logo" />
         <div className="lang-container">
           <p>Languages:</p>
-          <NavDropdown title={selectedLang} menuVariant="transparent">
+          <Form.Group>
+            <Form.Select className="lang" onChange={(e) => setSelectedLang(e.target.value)}>
+              <option value="English">English</option>
+              <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+            </Form.Select>
+          </Form.Group>
+          {/* <NavDropdown title={selectedLang} menuVariant="transparent" onChange={(e) => setSelectedLang(e.target.value)}>
             <NavDropdown.Item value="English">English</NavDropdown.Item>
             <NavDropdown.Item value="Bahasa Indonesia">Bahasa Indonesia</NavDropdown.Item>
-          </NavDropdown>
+          </NavDropdown> */}
         </div>
       </div>
       <div className="alert-container">
@@ -45,18 +69,18 @@ export default function Home() {
           <h5>Title</h5>
           <Form.Group className="title-content" controlId="formBasicCheckbox">
             {titles.map((title, idx) => {
-              return <Form.Check key={idx} type="checkbox" label={title} className="titles" />
+              return <Form.Check key={idx} type="checkbox" value={title} label={title} className="titles" name="title" onChange={handleChange} />
             })}
           </Form.Group>
         </div>
         <div className="form-name mb-4">
           <Form.Group className="name">
             <Form.Label>Last name</Form.Label>
-            <Form.Control type="text" placeholder="Last name" />
+            <Form.Control type="text" placeholder="Last name" name="lastName" onChange={handleChange} />
           </Form.Group>
           <Form.Group className="name">
             <Form.Label>First name</Form.Label>
-            <Form.Control type="text" placeholder="First name" />
+            <Form.Control type="text" placeholder="First name" name="firstName" onChange={handleChange} />
           </Form.Group>
         </div>
         <div className="form-number mb-4">
@@ -81,7 +105,7 @@ export default function Home() {
             </Dropdown>
             <InputGroup>
               <InputGroup.Text>+{codeNumber}</InputGroup.Text>
-              <FormControl id="inlineFormInputGroup" placeholder="Mobile phone number" />
+              <FormControl type="number" id="inlineFormInputGroup" placeholder="Mobile phone number" />
             </InputGroup>
           </Form.Group>
         </div>
@@ -90,12 +114,12 @@ export default function Home() {
           <div className="address-container">
             <Form.Group className="address mb-4">
               <Form.Label>Address</Form.Label>
-              <Form.Control type="text" placeholder="Address" />
+              <Form.Control type="text" placeholder="Address" name="address" onChange={handleChange} />
             </Form.Group>
             <div className="location-container mb-4">
               <Form.Group className="location">
                 <Form.Label>Country/Location</Form.Label>
-                <Form.Select defaultValue="Select Country/Location">
+                <Form.Select defaultValue="Select Country/Location" name="country/location" onChange={handleChange}>
                   <option value="">Select Country/Location</option>
                   {countries &&
                     countries.map((country, idx) => {
@@ -109,7 +133,7 @@ export default function Home() {
               </Form.Group>
               <Form.Group className="district">
                 <Form.Label>Province/District</Form.Label>
-                <Form.Select defaultValue="Province/District">
+                <Form.Select defaultValue="Province/District" name="province/district" onChange={handleChange}>
                   <option value="">Province/District</option>
                   {countries &&
                     countries.map((country, idx) => {
@@ -129,20 +153,20 @@ export default function Home() {
           <div className="contact-content">
             <Form.Group className="email-group">
               <Form.Label>Email Address</Form.Label>
-              <Form.Control type="text" placeholder="Email Address" />
+              <Form.Control type="text" placeholder="Email Address" name="email" onChange={handleChange} />
             </Form.Group>
             <div className="birthday">
               <Form.Group className="date">
                 <Form.Label>Date of birth</Form.Label>
-                <Form.Control type="text" placeholder="DD" />
+                <Form.Control type="number" placeholder="DD" name="day" onChange={handleChange} />
               </Form.Group>
               <Form.Group className="month">
                 <Form.Label>Month</Form.Label>
-                <Form.Control type="text" placeholder="MM" />
+                <Form.Control type="number" placeholder="MM" name="month" onChange={handleChange} />
               </Form.Group>
               <Form.Group className="year">
                 <Form.Label>Year</Form.Label>
-                <Form.Control type="text" placeholder="YYYY" />
+                <Form.Control type="number" placeholder="YYYY" name="year" onChange={handleChange} />
               </Form.Group>
             </div>
           </div>
@@ -177,15 +201,15 @@ export default function Home() {
         <div className="subcription">
           <Form.Group className="subs">
             <Form.Label>SMS & Mobile Call</Form.Label>
-            <Form.Check type="switch" id="custom-switch" />
+            <Form.Check type="switch" id="custom-switch" name="sms&call" onChange={handleChange} />
           </Form.Group>
           <Form.Group className="subs">
             <Form.Label>Emailing</Form.Label>
-            <Form.Check type="switch" id="custom-switch" />
+            <Form.Check type="switch" id="custom-switch" name="emailing" onChange={handleChange} />
           </Form.Group>
           <Form.Group className="subs">
             <Form.Label>Mailing</Form.Label>
-            <Form.Check type="switch" id="custom-switch" />
+            <Form.Check type="switch" id="custom-switch" name="mailing" onChange={handleChange} />
           </Form.Group>
         </div>
       </div>

@@ -69,9 +69,10 @@
   }
 }
 
-.home-container .header-container .lang-container .dropdown-toggle {
-  color: black;
-  padding: 8px;
+.home-container .header-container .lang-container .form-select {
+  border: 0;
+  padding-left: 0;
+  margin-left: 0.5rem;
 }
 
 .home-container .alert-container {
@@ -539,5 +540,11 @@
     padding: 1rem;
     width: 100%;
   }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 /*# sourceMappingURL=Home.css.map */
