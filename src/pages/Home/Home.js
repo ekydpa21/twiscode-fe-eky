@@ -52,10 +52,6 @@ export default function Home() {
               <option value="Bahasa Indonesia">Bahasa Indonesia</option>
             </Form.Select>
           </Form.Group>
-          {/* <NavDropdown title={selectedLang} menuVariant="transparent" onChange={(e) => setSelectedLang(e.target.value)}>
-            <NavDropdown.Item value="English">English</NavDropdown.Item>
-            <NavDropdown.Item value="Bahasa Indonesia">Bahasa Indonesia</NavDropdown.Item>
-          </NavDropdown> */}
         </div>
       </div>
       <div className="alert-container">
