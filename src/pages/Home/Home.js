@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import "./css/Home.css"
 import logo from "../../assets/images/logo.png"
-import { NavDropdown, Form, Dropdown, InputGroup, FormControl } from "react-bootstrap"
+import { Form, Dropdown, InputGroup, FormControl, Modal, Button } from "react-bootstrap"
 import axios from "axios"
 
 export default function Home() {
@@ -10,10 +10,24 @@ export default function Home() {
   const [selectedLang, setSelectedLang] = useState("English")
   const [codeNumber, setCodeNumber] = useState()
   const [userInput, setUserInput] = useState({
+    lastName: "",
+    firstName: "",
+    phoneNumber: "",
+    address: "",
+    country: "",
+    province: "",
+    email: "",
+    day: "",
+    month: "",
+    year: "",
     "sms&call": false,
     emailing: false,
     mailing: false,
   })
+  const [agreement, setAgreement] = useState(false)
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   const fetchContries = async (url) => {
     const contriesData = await axios.get(url)
@@ -23,8 +37,8 @@ export default function Home() {
 
   const handleChange = (e) => {
     const { name, value } = e.target
-    if (name === "sms&call" || name === "emailing" || name === "mailing") {
-      if (userInput["sms&call"] === false || userInput.emailing === false || userInput.mailing === false) {
+    if (name === "sms&call" || name === "emailing" || name === "mailing" || name === "agree") {
+      if (userInput["sms&call"] === false || userInput.emailing === false || userInput.mailing === false || userInput.agree === false) {
         setUserInput({ ...userInput, [name]: true })
       } else {
         setUserInput({ ...userInput, [name]: false })
@@ -38,7 +52,7 @@ export default function Home() {
     fetchContries("https://restcountries.eu/rest/v2/all")
   }, [])
 
-  console.log(selectedLang)
+  console.log(userInput)
 
   return (
     <div className="home-container">
@@ -47,7 +61,7 @@ export default function Home() {
         <div className="lang-container">
           <p>Languages:</p>
           <Form.Group>
-            <Form.Select className="lang" onChange={(e) => setSelectedLang(e.target.value)}>
+            <Form.Select value={selectedLang} className="lang" onChange={(e) => setSelectedLang(e.target.value)}>
               <option value="English">English</option>
               <option value="Bahasa Indonesia">Bahasa Indonesia</option>
             </Form.Select>
@@ -99,9 +113,21 @@ export default function Home() {
                   })}
               </Dropdown.Menu>
             </Dropdown>
+            {/* <Form.Select name="countryNumber" onChange={(e) => setCodeNumber(e.target.value)}>
+              {countries &&
+                countries.map((country, idx) => {
+                  return (
+                    <>
+                      <option value={country.numericCode} key={idx} imagesrc={country.flag}>
+                        {country.name}
+                      </option>
+                    </>
+                  )
+                })}
+            </Form.Select> */}
             <InputGroup>
               <InputGroup.Text>+{codeNumber}</InputGroup.Text>
-              <FormControl type="number" id="inlineFormInputGroup" placeholder="Mobile phone number" />
+              <FormControl type="number" id="inlineFormInputGroup" placeholder="Mobile phone number" name="phoneNumber" onChange={handleChange} />
             </InputGroup>
           </Form.Group>
         </div>
@@ -115,7 +141,7 @@ export default function Home() {
             <div className="location-container mb-4">
               <Form.Group className="location">
                 <Form.Label>Country/Location</Form.Label>
-                <Form.Select defaultValue="Select Country/Location" name="country/location" onChange={handleChange}>
+                <Form.Select defaultValue="Select Country/Location" name="country" onChange={handleChange}>
                   <option value="">Select Country/Location</option>
                   {countries &&
                     countries.map((country, idx) => {
@@ -129,7 +155,7 @@ export default function Home() {
               </Form.Group>
               <Form.Group className="district">
                 <Form.Label>Province/District</Form.Label>
-                <Form.Select defaultValue="Province/District" name="province/district" onChange={handleChange}>
+                <Form.Select defaultValue="Province/District" name="province" onChange={handleChange}>
                   <option value="">Province/District</option>
                   {countries &&
                     countries.map((country, idx) => {
@@ -149,7 +175,7 @@ export default function Home() {
           <div className="contact-content">
             <Form.Group className="email-group">
               <Form.Label>Email Address</Form.Label>
-              <Form.Control type="text" placeholder="Email Address" name="email" onChange={handleChange} />
+              <Form.Control type="email" placeholder="Email Address" name="email" onChange={handleChange} />
             </Form.Group>
             <div className="birthday">
               <Form.Group className="date">
@@ -211,11 +237,45 @@ export default function Home() {
       </div>
       <div className="terms">
         <Form.Group className="title-content" controlId="formBasicCheckbox">
-          <Form.Check type="checkbox" label="I have read and understood the above and conditions and hereby agree that I will be bounded by these conditions and policies once I have submitted this application form" />
+          <Form.Check
+            type="checkbox"
+            label="I have read and understood the above and conditions and hereby agree that I will be bounded by these conditions and policies once I have submitted this application form"
+            name="agree"
+            onChange={() => setAgreement(!agreement)}
+          />
         </Form.Group>
       </div>
       <div className="submit-btn">
-        <button>CREATE CUSTOMER</button>
+        {/* <button disabled={agreement === true ? false : true}>CREATE CUSTOMER</button> */}
+        <Button disabled={agreement === true ? false : true} onClick={handleShow}>
+          CREATE CUSTOMER
+        </Button>
+
+        <Modal show={show} onHide={handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>verification</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <p>
+              Name: {userInput.title ? userInput.title : ""} {userInput.firstName} {userInput.lastName}
+            </p>
+            <p>
+              BirthDate: {userInput.day}-{userInput.month}-{userInput.year}
+            </p>
+            <p>E-mail: {userInput.email}</p>
+            <p>
+              Phone Number: +{codeNumber}-{userInput.phoneNumber}
+            </p>
+            <p>
+              Address: {userInput.address}, {userInput.country}, {userInput.province}
+            </p>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="primary" onClick={handleClose}>
+              Submit
+            </Button>
+          </Modal.Footer>
+        </Modal>
       </div>
     </div>
   )
